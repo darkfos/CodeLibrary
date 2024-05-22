@@ -8,7 +8,7 @@
 
 
 def to_csv_text(array):
-    #7 kyu
+    #8 kyu
 
     array = list(map(lambda x: [str(numb) for numb in x], array))
     return "\\n".join(list(map(lambda arr: ",".join(arr), array)))
