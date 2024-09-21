@@ -1,6 +1,12 @@
 from typing import Optional, List
 
-# Definition for a binary tree node.
+"""
+    Given a binary tree, find its minimum depth.
+    
+    The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+    Note: A leaf is a node with no children.
+"""
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -8,26 +14,15 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result: set = set()
-        lst: list = [root]
+    #Easy
+    def minDepth(self, root: Optional[TreeNode]) -> int:
 
-        if root:
-            while lst:
-                node = lst.pop()
-                if node.left:
-                    lst.append(node.left)
-                if node.right:
-                    lst.append(node.right)
-                result.add(node.val)
-            return result
-        else: return list({})
+        if not root:
+            return 0
 
-root = TreeNode(2)
-root.right = TreeNode(5)
-root.right.left = TreeNode(10)
-print(
-    Solution().inorderTraversal(
-        root=root
-    )
-)
+        if root.left is None and root.right is not None:
+            return 1 + self.minDepth(root.right)
+        if root.left is not None and root.right is None:
+            return 1+ self.minDepth(root.left)
+
+        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
