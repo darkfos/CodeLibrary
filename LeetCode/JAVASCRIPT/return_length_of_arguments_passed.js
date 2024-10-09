@@ -4,7 +4,7 @@
 
 
 var argumentsLength = function(...args) {
-    #Easy
+    // Easy
     let count_elements = 0;
     args.forEach((el) => {
         count_elements++;
